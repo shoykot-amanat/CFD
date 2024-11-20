@@ -16,7 +16,7 @@ from matplotlib.animation import FuncAnimation
 l = 1 # rod length
 n = 41 # number of grid points
 # dx = l/(n-1) # distance between two adjacent grid points
-max_iteration = 200 # specifying iteration number
+max_iteration = 1000 # specifying iteration number
 tolerance = 1e-6  # Convergence criteria
 
 T = np.zeros(n) # initialize array for temperature.
@@ -50,6 +50,9 @@ def update(frame):
     line.set_ydata(T)
     return line,
 
-ani = FuncAnimation(fig, update, frames=max_iteration, blit=True, interval=10)    
+ani = FuncAnimation(fig, update, frames=max_iteration, blit=True, interval=10) 
+
+# Save the animation as an MP4 video
+ani.save("heat_conduction.mp4", writer="ffmpeg", fps=20)
 
 plt.show()
